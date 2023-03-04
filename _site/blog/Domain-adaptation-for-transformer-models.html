@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<!--
+  portfolYOU Jekyll theme by Youssef Raafat
+  Free for personal and commercial use under the MIT license
+  https://github.com/YoussefRaafatNasry/portfolYOU
+-->
+
+<html lang="en" class="h-100">
+
+<head>
+
+  
+  
+  
+
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Domain adaptation in transformer models">
+  <meta property="og:description" content="Description of several domain adaptation techniques">
+  <meta property="og:image" content="/assets/images/profile-pic.jpg">
+
+  <title>Domain adaptation in transformer models</title>
+  <meta name="description" content="Description of several domain adaptation techniques">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Theme style -->
+  <script src="/assets/js/theme.js"></script>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body class="h-100 d-flex flex-column">
+
+  <main class="flex-shrink-0 container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-themed">
+
+  <a class="navbar-brand" href="/"><h5><b>Nikhil Salodkar</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-1x fa-bars text-themed"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto"><a class="nav-item nav-link " href="/about/">About</a>
+
+      <a class="nav-item nav-link " href="/projects/">Projects</a>
+
+      <a class="nav-item nav-link " href="/services/">My Services</a>
+
+      <a class="nav-item nav-link active" href="/blog/">Blog</a>
+
+      <a class="nav-item nav-link " href="/contact/">Contact</a>
+
+      
+
+      <span id="theme-toggler" class="nav-item nav-link" role="button" onclick="toggleTheme()"></span>
+    </div>
+  </div>
+
+</nav>
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <h1><b>Domain adaptation in transformer models</b></h1>
+
+<p class="post-metadata text-muted">
+  27 December 2022 -  
+  <b>3 mins read time</b>
+
+  <br>Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/blog/tags#transformer-architectures">
+      <span class="tag badge badge-pill text-primary border border-primary">Transformer Architectures</span>
+    </a>
+    
+    <a class="text-decoration-none no-underline" href="/blog/tags#nlp">
+      <span class="tag badge badge-pill text-primary border border-primary">NLP</span>
+    </a>
+    </p>
+
+<p>Transformer models have proven to be quite performative and useful when correctly pre-trained on large text corpus 
+and fine-tuned with small to moderately sized supervised datasets to solve downstream NLP tasks. Much of the research
+in pre-training of Language models, and testing performance is done using general text corpus like Wikipedia, News
+articles, Reddit comments and mixture of such types of text corpus sources. The main reason is easier availability 
+of such resources and trying to acquire as much text and as varied text as possible for research purposes. So, many
+of the popular pre-trained models turned out to be pre-trained using general purpose text which cannot necessarily
+be categorized as a particular domain.</p>
+
+<p>But, in real life and most of the production scenarios applications are made to handle a particular domain of text
+data. For example, application to summarize news articles, application to perform search over scientific research
+documents, chatbot built to answer education related queries and so on. Thus, these specialized application focus
+on particular domains of their own and, it begs the question, whether using a general purpose trained language
+model to train for such specialized domain is the best thing to do. This question led to the research community in
+seeking the area of domain adaptation for language models.</p>
+
+<p>In this post we will understand what domain adaptation is, its benefits and how it can be done.</p>
+
+<h1 id="what-is-domain-adaptation-and-why-it-is-important">What is Domain Adaptation and Why it is important?</h1>
+<p>Domain adaptation can be defined as any training technique which can help a pre-trained Language model to better
+adapt itself to solve tasks in a specialized NLP text domain.</p>
+
+<p>This can be important because in real world there are many NLP domains with common tasks which can benefit if 
+the language model is adapted suitably. Some common NLP domains and popular tasks are as given below:</p>
+<ul>
+  <li>Medical and/or Pharmaceutical domain : Popular tasks and applications in this domain include
+    <ul>
+      <li>Entity detection and Linking : Detecting special pharmaceutical and medical entities in a text like entities
+pertaining to diseases, medicine, proteins, symptoms, side effects etc.</li>
+      <li>Specialized chatbots for answering patient queries and return correct search results</li>
+      <li>Research paper recommendation : What research to read next pertaining to research area of interest</li>
+      <li>Extractive text summarization : Automatically highlighting important sentences in medical research papers etc</li>
+    </ul>
+  </li>
+  <li>General News domain :
+    <ul>
+      <li>News article summarization</li>
+      <li>Article recommendation based on readers interest and past history</li>
+      <li>Clustering news articles and finding similar or correlated news</li>
+    </ul>
+  </li>
+  <li>Product sales and services :
+    <ul>
+      <li>Sentiment analysis on reviews of purchased products like retail products or even watched movies or games played</li>
+      <li>Customer support service assistance for faster solution resolution</li>
+      <li>Intelligent IVR systems</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Many NLP applications are focused on a particular industry and may also have focused subdomain in that industry,
+like in Pharma industry language around clinical trials might be different to drug discovery research and very
+different compared to clinical Electronic Medical records language. There could be difference in vocabulary,
+sentence structure, short forms, language formality and so on. Thus, in most real world cases it may become
+necessary to specialize language model to get better performance on interested tasks.</p>
+
+<p>To create such specialized models one approach is to train the transformer based language models directly using
+relevant domain text data. This has been done on some popular models like <strong>BioMegatron, Sci-Bert, BioBERT</strong> etc which
+were pre-trained directly on specialized text corpus like Pubmed extracts and other scientific journals. But, in
+most cases for specialized domains there either would be dearth in quantity of text necessary to train a full-fledged
+language model, or it would be too computationally expensive and time-consuming.</p>
+
+<p>Thus, it becomes prudent that we find useful training methods that could help in adaptation of existing Language models
+more efficiently.</p>
+
+<h1 id="domain-adaptation-strategies">Domain adaptation strategies</h1>
+<p>Let’s review some domain adaptation strategies that we can follow and discuss some on some research papers
+proposing these ideas.</p>
+
+<ul>
+  <li><strong>Adapting domain by continuing the pre-training using in-domain dataset</strong>:</li>
+  <li><strong>Updating tokenization strategy to include more in-domain vocabulary</strong>:</li>
+</ul>
+
+
+
+<div class="pt-5">
+  
+</div>
+
+</div>
+  </main>
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    by <strong>Nikhil Salodkar</strong>
+  </small>
+
+  <div class="container-fluid justify-content-center"><a class="social mx-1"  href="mailto:sniks1990@gmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a><a class="social mx-1"  href="https://www.github.com/nikhil-salodkar"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a><a class="social mx-1"  href="https://www.linkedin.com/in/nikhil-salodkar-90"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#007bb5'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-linkedin-in fa-1x"></i>
+    </a>
+
+</div><small id="attribution">
+    theme <a href="https://github.com/YoussefRaafatNasry/portfolYOU">portfolYOU</a>
+  </small>
+
+</footer>
+
+  
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+inside index
+<div class="card-columns m-3 mt-5">
+
+  <!-- Local Projects -->
+  {% for service in site.services %}
+
+    {%- assign service_type  = "local" -%}
+    {%- assign service_id    = service.name | slugify -%}
+    {%- assign service_img   = service.image -%}
+    {%- assign service_name  = service.name -%}
+    {%- assign service_desc  = service.description -%}
+    {%- assign service_characteristic = service.characteristic -%}
+    {%- assign service_url = service.url | relative_url -%}
+    {%- assign external    = false -%}
+
+    {% include services/services-card.html %}
+
+  {% endfor %}
+
+</div>

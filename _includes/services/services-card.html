@@ -1,0 +1,24 @@
+<div class="wow animated fadeIn" data-wow-delay=".15s">
+  <a href="{{ service_url }}" class="project card text-themed" {%- if external and site.open_new_tab -%} target="_blank" {%- endif -%}>
+    {%- if service_img -%}
+    <img id="{{ service_id }}-img" class="card-img-top" src="{{ service_img }}" alt="{{ service_name }}" />
+    {%- endif -%}
+    <div class="card-body">
+      <h5 id="{{ service_id }}-name" class="card-title">
+        {{ service_name }}
+      </h5>
+      <p id="{{ service_id }}-desc" class="card-text">
+        <ul>
+        {%- for desc in service_desc -%}
+        <li>{{desc}}</li>
+        {%- endfor -%}
+        </ul>
+      </p>
+      <p id="{{ service_id }}-service_type" class="card-text">
+        {%- for type in service_characteristic -%}
+        <span class="badge badge-pill text-success border border-success ml-1">{{ type }}</span>
+        {%- endfor -%}
+      </p>
+    </div>
+  </a>
+</div>

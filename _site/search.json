@@ -1,0 +1,35 @@
+[
+  
+    {
+      "title"    : "Transformer usage in Non NLP fields",
+      "category" : "",
+      "tags"     : "Transformer Architectures, NLP",
+      "url"      : "/blog/Use-of-transformers-in-AI-fields",
+      "date"     : "2023-01-03 00:00:00 +0530"
+    } ,
+  
+    {
+      "title"    : "Domain adaptation in transformer models",
+      "category" : "",
+      "tags"     : "Transformer Architectures, NLP",
+      "url"      : "/blog/Domain-adaptation-for-transformer-models",
+      "date"     : "2022-12-27 00:00:00 +0530"
+    } ,
+  
+    {
+      "title"    : "A brief look into downstream NLP tasks using transformer models",
+      "category" : "",
+      "tags"     : "Transformer Architectures, NLP",
+      "url"      : "/blog/fine-tuning-tasks",
+      "date"     : "2022-12-22 00:00:00 +0530"
+    } ,
+  
+    {
+      "title"    : "Self-supervised pretraining strategies for transformer models",
+      "category" : "",
+      "tags"     : "Transformer Architectures, NLP",
+      "url"      : "/blog/Transformer-Pretraining-strategies",
+      "date"     : "2022-12-10 00:00:00 +0530"
+    } 
+  
+]
