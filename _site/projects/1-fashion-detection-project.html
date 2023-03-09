@@ -21,12 +21,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Contact">
-  <meta property="og:description" content="Freelance Data scientist, Software engineer, Computer science enthusiast, and a lifelong learner">
-  <meta property="og:image" content="/assets/images/profile-pic.jpg">
+  <meta property="og:title" content="Fashion Classification &amp; Similarity Recommendation">
+  <meta property="og:description" content="Train a Convolutional Neural Network to classify and predict similar fashion items">
+  <meta property="og:image" content="../assets/images/fashion_project_shot1.png">
 
-  <title>Contact</title>
-  <meta name="description" content="Freelance Data scientist, Software engineer, Computer science enthusiast, and a lifelong learner">
+  <title>Fashion Classification &amp; Similarity Recommendation</title>
+  <meta name="description" content="Train a Convolutional Neural Network to classify and predict similar fashion items">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -61,13 +61,13 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto"><a class="nav-item nav-link " href="/about/">About</a>
 
-      <a class="nav-item nav-link " href="/projects/">Projects</a>
+      <a class="nav-item nav-link active" href="/projects/">Projects</a>
 
       <a class="nav-item nav-link " href="/services/">My Services</a>
 
       <a class="nav-item nav-link " href="/blog/">Blog</a>
 
-      <a class="nav-item nav-link active" href="/contact/">Contact</a>
+      <a class="nav-item nav-link " href="/contact/">Contact</a>
 
       
 
@@ -76,67 +76,24 @@
   </div>
 
 </nav>
-    <br/>
-To get in touch with me, you can either DM me on LinkedIn or fill this form below adding your requirements in short.
-I will get back to you.
-<br/><br/><br/>
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <h3 id="objective">Objective</h3>
+<p>Create and train a classification model using Convolutional Nerual Network architectures like ResNet to 
+classify images into different product categories and subcategories and use the trained Neural Network to 
+generate images embeddings which could help in creating a simple visual similarity recommendation system.</p>
 
-<!DOCTYPE html>
-<html lang="en">
-<head><meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+<p><img src="../assets/images/fashion_project_shot1.png" alt="preview" /></p>
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
+<h3 id="code">Code</h3>
+<p>Github Link: <a href="https://github.com/nikhil-salodkar/fashion_detection">https://github.com/nikhil-salodkar/fashion_detection</a></p>
 
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+<h3 id="demo">Demo</h3>
+<p>Live Demo can be tried in Huggingface spaces: <a href="https://huggingface.co/spaces/niks-salodkar/Fashion-Prediction-Demo">https://huggingface.co/spaces/niks-salodkar/Fashion-Prediction-Demo</a></p>
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+<h3 id="dataset">Dataset</h3>
+<p>The Kaggle dataset can be found <a href="https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-dataset">here</a>.</p>
 
-.container {
-  border-radius: 5px;
-  padding: 20px;
-}
-</style>
-    <title>Contact</title>
-</head>
-<body>
-<form action="https://formspree.io/f/mleknpla", method="POST">
-    <label for="full-name">Name</label>
-    <input type="text" id="full-name" name="name" placeholder="Your full name..", required="">
-
-    <label for="email-address">Your Email</label>
-    <input type="email" name="_replyto", id="email-address" placeholder="email@domain.tld", required="">
-    <br/><br/>
-
-    <label for="message">Your Query</label>
-    <textarea id="message" name="message" placeholder="How can I help.." style="height:200px", required=""></textarea>
-    <input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission"/>
-
-    <input type="submit" value="Send"/>
-</form>
-</body>
-</html>
-
+</div>
   </main>
   <footer class="mt-auto py-3 text-center">
 

@@ -1,7 +1,6 @@
 ---
 name: Taking to production
 image: ../assets/images/prod_consult.png
-characteristic: [Fixed price, Hourly price]
 description: [Solution Architecture Development, Project planning, Production Model Deployment, Model Integration
 Model Optimization]
 ---

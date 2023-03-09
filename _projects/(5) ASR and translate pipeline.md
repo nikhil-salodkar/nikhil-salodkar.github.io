@@ -13,11 +13,11 @@ deployed on edge devices.
 
 ![preview](../assets/images/asr_arch_new.png)
 
-### Requirements
+### POC Requirements
 1. Experiment with pre-trained ASR model performance and efficiency for English language on sports and non-sports news
 2. Experiment with performance of existing text translation model for English to Spanish
 3. Experiment with performance of pre-trained text to speech model for English
-4. Experiment on how to efficiently deploy this multi-model architecture and assess its real time efficiency concerns
+4. Experiment on how to efficiently deploy this multimodel architecture and assess its real time efficiency concerns
 5. Build a demo showcasing the capabilities on downloaded and provided News videos in real time
 
 ### Solution and Deliverables summary
@@ -27,3 +27,8 @@ The Machine Learning solution comprised of several models, components and delive
 2. Developing evaluation metrics for individual components and for integrated pipeline
 3. Experiment with pretrained ASR models including Quartznet and Citrinet, Text translation using Transformer based model and Text to speech using Techotron 2 and Nvidia's Fastpitch and Flowtron
 4. Developing Multi-model ensemble pipeline using Triton Inference Server
+
+### Major technologies and tools used
+1. Pre-trained ASR, Translation and TTS models
+2. PyTorch, Triton Inference Server
+3. Node.js

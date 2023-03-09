@@ -21,12 +21,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Contact">
-  <meta property="og:description" content="Freelance Data scientist, Software engineer, Computer science enthusiast, and a lifelong learner">
-  <meta property="og:image" content="/assets/images/profile-pic.jpg">
+  <meta property="og:title" content="Entity Detection and Normalization for Drug Discovery">
+  <meta property="og:description" content="Building End to End training and Deployment pipeline for faster research turnaround time in Drug Discovery using SOTA NLP techniques">
+  <meta property="og:image" content="../assets/images/entity_linking_new.png">
 
-  <title>Contact</title>
-  <meta name="description" content="Freelance Data scientist, Software engineer, Computer science enthusiast, and a lifelong learner">
+  <title>Entity Detection and Normalization for Drug Discovery</title>
+  <meta name="description" content="Building End to End training and Deployment pipeline for faster research turnaround time in Drug Discovery using SOTA NLP techniques">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -61,13 +61,13 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto"><a class="nav-item nav-link " href="/about/">About</a>
 
-      <a class="nav-item nav-link " href="/projects/">Projects</a>
+      <a class="nav-item nav-link active" href="/projects/">Projects</a>
 
       <a class="nav-item nav-link " href="/services/">My Services</a>
 
       <a class="nav-item nav-link " href="/blog/">Blog</a>
 
-      <a class="nav-item nav-link active" href="/contact/">Contact</a>
+      <a class="nav-item nav-link " href="/contact/">Contact</a>
 
       
 
@@ -76,67 +76,36 @@
   </div>
 
 </nav>
-    <br/>
-To get in touch with me, you can either DM me on LinkedIn or fill this form below adding your requirements in short.
-I will get back to you.
-<br/><br/><br/>
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <h3 id="objective">Objective</h3>
+<p>The Pharma client is in need of an automated system to Detect, Disambiguate and Link technical entities and relations 
+from published research literature to existing ontology which could help the scientists expedite their Drug Discovery 
+research.</p>
 
-<!DOCTYPE html>
-<html lang="en">
-<head><meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+<p><img src="../assets/images/entity_linking_new.png" alt="preview" /></p>
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
+<h3 id="problem-requirements">Problem Requirements</h3>
+<p>Given research text as input:</p>
+<ol>
+  <li>Detect clinical entities of interest from sentences</li>
+  <li>Link and Disambiguate detected entities to existing ontologies</li>
+  <li>Detect relation between entities if present</li>
+  <li>Form entity -&gt; relation -&gt; entity triplet which could be fed into a database for further analysis</li>
+</ol>
 
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+<h3 id="solution-and-deliverables-summary">Solution and Deliverables summary</h3>
+<p>The Machine Learning solution comprised of several models, components and deliverables :</p>
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+<ol>
+  <li>Fine-tuned BioMegatron Language model to perform named entity recognition to detect entity classes including Drug names, Proteins and Genes using client provided annotated text data</li>
+  <li>Trained a topic similarity model using contrasitive learning techniques to detect paragraph relevance to predefined topics of interest</li>
+  <li>Fine-tuned BioMegatron model to detect relation between entities of interest</li>
+  <li>Develop pipeline for automated and human evaluation to get metrics like top k recall, precision, exact match, and visual inspection of results</li>
+  <li>Create separate training and inference dockerized environment</li>
+  <li>Develop web based demo application to view results and acquire human feedback</li>
+</ol>
 
-.container {
-  border-radius: 5px;
-  padding: 20px;
-}
-</style>
-    <title>Contact</title>
-</head>
-<body>
-<form action="https://formspree.io/f/mleknpla", method="POST">
-    <label for="full-name">Name</label>
-    <input type="text" id="full-name" name="name" placeholder="Your full name..", required="">
-
-    <label for="email-address">Your Email</label>
-    <input type="email" name="_replyto", id="email-address" placeholder="email@domain.tld", required="">
-    <br/><br/>
-
-    <label for="message">Your Query</label>
-    <textarea id="message" name="message" placeholder="How can I help.." style="height:200px", required=""></textarea>
-    <input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission"/>
-
-    <input type="submit" value="Send"/>
-</form>
-</body>
-</html>
-
+</div>
   </main>
   <footer class="mt-auto py-3 text-center">
 

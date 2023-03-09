@@ -21,12 +21,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Handwritten text recognition from Images">
-  <meta property="og:description" content="Use Convolutional and LSTM models to train to predict Handwritten text from images">
-  <meta property="og:image" content="../assets/images/handwritten_recog_shot.png">
+  <meta property="og:title" content="Recommendation using contextual multi-armed bandits">
+  <meta property="og:description" content="Recommend relevant attractions to increase engagement leveraging variety of customer context using Contextual multi-armed bandits">
+  <meta property="og:image" content="../assets/images/contextual-bandit-pic.png">
 
-  <title>Handwritten text recognition from Images</title>
-  <meta name="description" content="Use Convolutional and LSTM models to train to predict Handwritten text from images">
+  <title>Recommendation using contextual multi-armed bandits</title>
+  <meta name="description" content="Recommend relevant attractions to increase engagement leveraging variety of customer context using Contextual multi-armed bandits">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -78,36 +78,56 @@
 </nav>
     <div class="col-lg-10 mx-auto mt-5 markdown-body">
   <h3 id="objective">Objective</h3>
-<p>Experiment with developing and training a Handwriting recognition model using Convolutional Neural Network 
-and sequential model like LSTM together which could predict what is written in an image by first extracting 
-its image features and feeding the image features to a sequential model to further make prediction of character sequences.</p>
+<p>A reputed Entertainment Resort company wants to increase engagement to their website hoping to increase their ticket sales by showing customers relevant attractions</p>
 
-<p><img src="../assets/images/handwritten_recog_shot.png" alt="preview" /></p>
+<p><img src="../assets/images/contextual-bandit-pic.png" alt="preview" /></p>
 
-<h3 id="code">Code</h3>
-<p>Github Link : <a href="https://github.com/nikhil-salodkar/handwriting_recognition">https://github.com/nikhil-salodkar/handwriting_recognition</a></p>
+<h3 id="data-requirements">Data Requirements</h3>
+<p>Each customer can have personalized information including:</p>
+<ul>
+  <li>Profile info : Signedup customers have information regarding their name, place of origin, family information, interests presented in categorical and textual format</li>
+  <li>Clickstream info: History of clicks and page visits of the logged in or not loggedin customer</li>
+  <li>Interaction info: Interactions and queries made by customers through chat and forums in textual format</li>
+  <li>Cart info: Interactions and services added to cart so far by the client</li>
+</ul>
 
-<h3 id="demo">Demo</h3>
-<p>Live Demo can be tried in Huggingface spaces : <a href="https://huggingface.co/spaces/niks-salodkar/Handwriting-Recog-Demo">https://huggingface.co/spaces/niks-salodkar/Handwriting-Recog-Demo</a></p>
+<h3 id="evaluation-metrics-and-success-criterion">Evaluation metrics and success criterion</h3>
+<ol>
+  <li>Click-through rate</li>
+  <li>Cart conversions and sales</li>
+  <li>Email advertisement engagement</li>
+</ol>
 
-<h3 id="dataset">Dataset</h3>
-<p>The Kaggle dataset can be found <a href="https://www.kaggle.com/datasets/landlord/handwriting-recognition">here</a>.</p>
+<p>Success criterion: Statistically significant increase in evaluation metrics by at least 10%</p>
+
+<h3 id="solution-and-deliverables-summary">Solution and Deliverables summary</h3>
+<p>The Machine learning solutions comprised of several models, components and deliverables:</p>
+<ol>
+  <li>Support the client and Data Engineers in building A/B test platform to test out this project</li>
+  <li>Support with developing data pre-processing and cleaning pipeline</li>
+  <li>Build Multi-model architecture to convert customer information types into embeddings which could be used together for analysis and prediction</li>
+  <li>Develop a Neural Network based Contextual Multi-armed Bandit model to leverage the customer information and produce relevent recommendation</li>
+  <li>Support the client on decision regarding what type of images and text would be useful to show as recommendations</li>
+  <li>Integrate the models developed in the A/B testing pipeline</li>
+</ol>
+
+<h3 id="major-technologies-and-tools-used">Major technologies and tools used</h3>
+<ol>
+  <li>Bayesian Neural Networks for Contextual Multi-armed bandits</li>
+  <li>CNN, Word2vec, Feed forward Neural Networks, A/B testing</li>
+  <li>Tensorflow, Tensorflow Serving</li>
+</ol>
 
 </div>
   </main>
   <footer class="mt-auto py-3 text-center">
 
-  <small class="text-muted mb-2">
-    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
-    by <strong>Nikhil Salodkar</strong>
-  </small>
+<!--  <small class="text-muted mb-2">-->
+<!--    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>-->
+<!--    by <strong>Nikhil Salodkar</strong>-->
+<!--  </small>-->
 
-  <div class="container-fluid justify-content-center"><a class="social mx-1"  href="mailto:sniks1990@gmail.com"
-       style="color: #6c757d"
-       onMouseOver="this.style.color='#db4437'"
-       onMouseOut="this.style.color='#6c757d'">
-      <i class="fas fa-envelope fa-1x"></i>
-    </a><a class="social mx-1"  href="https://www.github.com/nikhil-salodkar"
+  <div class="container-fluid justify-content-center"><a class="social mx-1"  href="https://www.github.com/nikhil-salodkar"
        style="color: #6c757d"
        onMouseOver="this.style.color='#333333'"
        onMouseOut="this.style.color='#6c757d'">
@@ -119,9 +139,9 @@ its image features and feeding the image features to a sequential model to furth
       <i class="fab fa-linkedin-in fa-1x"></i>
     </a>
 
-</div><small id="attribution">
-    theme <a href="https://github.com/YoussefRaafatNasry/portfolYOU">portfolYOU</a>
-  </small>
+</div><!--  <small id="attribution">-->
+<!--    theme <a href="https://github.com/YoussefRaafatNasry/portfolYOU">portfolYOU</a>-->
+<!--  </small>-->
 
 </footer>
 

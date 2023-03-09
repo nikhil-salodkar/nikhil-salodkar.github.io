@@ -21,12 +21,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Contact">
-  <meta property="og:description" content="Freelance Data scientist, Software engineer, Computer science enthusiast, and a lifelong learner">
-  <meta property="og:image" content="/assets/images/profile-pic.jpg">
+  <meta property="og:title" content="Anomaly detection to identify malicious and bot activity in web traffic">
+  <meta property="og:description" content="Build system to automatically detect malicious and bot activity in web traffic to ease cybersecurity professionals' work">
+  <meta property="og:image" content="../assets/images/anomaly-pic.png">
 
-  <title>Contact</title>
-  <meta name="description" content="Freelance Data scientist, Software engineer, Computer science enthusiast, and a lifelong learner">
+  <title>Anomaly detection to identify malicious and bot activity in web traffic</title>
+  <meta name="description" content="Build system to automatically detect malicious and bot activity in web traffic to ease cybersecurity professionals' work">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -61,13 +61,13 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto"><a class="nav-item nav-link " href="/about/">About</a>
 
-      <a class="nav-item nav-link " href="/projects/">Projects</a>
+      <a class="nav-item nav-link active" href="/projects/">Projects</a>
 
       <a class="nav-item nav-link " href="/services/">My Services</a>
 
       <a class="nav-item nav-link " href="/blog/">Blog</a>
 
-      <a class="nav-item nav-link active" href="/contact/">Contact</a>
+      <a class="nav-item nav-link " href="/contact/">Contact</a>
 
       
 
@@ -76,67 +76,47 @@
   </div>
 
 </nav>
-    <br/>
-To get in touch with me, you can either DM me on LinkedIn or fill this form below adding your requirements in short.
-I will get back to you.
-<br/><br/><br/>
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <h3 id="objective">Objective</h3>
+<p>An Entertainment retail company wants to develop a Machine learning system to detect, analyze, prevent web traffic of malicious and/or automated bots</p>
 
-<!DOCTYPE html>
-<html lang="en">
-<head><meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+<p><img src="../assets/images/anomaly-pic.png" alt="preview" /></p>
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
+<h3 id="data-requirements">Data Requirements</h3>
+<p>The client has access to millions of rows of web requests arising to its website with detailed information on:</p>
+<ul>
+  <li>Get requests URL and header information,</li>
+  <li>Time of requests,</li>
+  <li>Cookie and session information</li>
+  <li>Form submission queries</li>
+</ul>
 
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+<h3 id="evaluation-metrics-and-success-criterion">Evaluation metrics and success criterion</h3>
+<p><strong>SLA</strong></p>
+<ol>
+  <li>More than 90% recall and precision to detect malicious requests</li>
+  <li>More than 85% recall and precision to automatically detect bots</li>
+</ol>
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+<p><strong>Success criteria</strong>: Accurately predicting malicious queries and bots automatically saves how much manual time of Cybersecurity Engineers</p>
 
-.container {
-  border-radius: 5px;
-  padding: 20px;
-}
-</style>
-    <title>Contact</title>
-</head>
-<body>
-<form action="https://formspree.io/f/mleknpla", method="POST">
-    <label for="full-name">Name</label>
-    <input type="text" id="full-name" name="name" placeholder="Your full name..", required="">
+<h3 id="solution-and-deliverables-summary">Solution and Deliverables summary</h3>
+<p>The Machine learning solutions comprised of several models, components and deliverables:</p>
+<ol>
+  <li>Data pre-processing and Cleaning the web requests to extact relevant information</li>
+  <li>Developing a character level sequence model to detect anomalous web request that could be malicious and contains commands for SQL injection and Cross site scripting</li>
+  <li>Developing an anomaliy detection statistical model to predict anomalous activity of a user session</li>
+  <li>Development of web dashboard so that clients can view the prediction results in real time and analyze its performance</li>
+</ol>
 
-    <label for="email-address">Your Email</label>
-    <input type="email" name="_replyto", id="email-address" placeholder="email@domain.tld", required="">
-    <br/><br/>
+<h3 id="major-technologies-and-tools-used">Major technologies and tools used</h3>
+<ol>
+  <li>LSTM, CNN, Encoder Decoder models</li>
+  <li>PyTorch, Sklearn, NLTK, Plotly</li>
+  <li>Node.js</li>
+</ol>
 
-    <label for="message">Your Query</label>
-    <textarea id="message" name="message" placeholder="How can I help.." style="height:200px", required=""></textarea>
-    <input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission"/>
-
-    <input type="submit" value="Send"/>
-</form>
-</body>
-</html>
-
+</div>
   </main>
   <footer class="mt-auto py-3 text-center">
 

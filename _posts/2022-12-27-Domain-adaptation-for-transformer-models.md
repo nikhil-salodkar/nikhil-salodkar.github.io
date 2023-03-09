@@ -30,17 +30,17 @@ adapt itself to solve tasks in a specialized NLP text domain.
 
 This can be important because in real world there are many NLP domains with common tasks which can benefit if 
 the language model is adapted suitably. Some common NLP domains and popular tasks are as given below:
-- Medical and/or Pharmaceutical domain : Popular tasks and applications in this domain include
-  - Entity detection and Linking : Detecting special pharmaceutical and medical entities in a text like entities
+- **Medical and/or Pharmaceutical domain** : Popular tasks and applications in this domain include
+  - Entity detection and Linking: Detecting special pharmaceutical and medical entities in a text like entities
     pertaining to diseases, medicine, proteins, symptoms, side effects etc.
   - Specialized chatbots for answering patient queries and return correct search results
-  - Research paper recommendation : What research to read next pertaining to research area of interest
-  - Extractive text summarization : Automatically highlighting important sentences in medical research papers etc
-- General News domain :
+  - Research paper recommendation: What research to read next pertaining to research area of interest
+  - Extractive text summarization: Automatically highlighting important sentences in medical research papers etc
+- **General News domain** :
   - News article summarization
   - Article recommendation based on readers interest and past history
   - Clustering news articles and finding similar or correlated news
-- Product sales and services :
+- **Product sales and services** :
   - Sentiment analysis on reviews of purchased products like retail products or even watched movies or games played
   - Customer support service assistance for faster solution resolution
   - Intelligent IVR systems
@@ -52,7 +52,7 @@ sentence structure, short forms, language formality and so on. Thus, in most rea
 necessary to specialize language model to get better performance on interested tasks.
 
 To create such specialized models one approach is to train the transformer based language models directly using
-relevant domain text data. This has been done on some popular models like **BioMegatron, Sci-Bert, BioBERT** etc which
+relevant domain text data. This has been done on some popular models like **BioMegatron, Sci-Bert, BioBERT** etc, which
 were pre-trained directly on specialized text corpus like Pubmed extracts and other scientific journals. But, in
 most cases for specialized domains there either would be dearth in quantity of text necessary to train a full-fledged
 language model, or it would be too computationally expensive and time-consuming.

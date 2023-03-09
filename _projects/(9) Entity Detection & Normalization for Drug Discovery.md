@@ -12,9 +12,8 @@ research.
 
 ![preview](../assets/images/entity_linking_new.png)
 
-### Requirements
+### Problem Requirements
 Given research text as input:
-
 1. Detect clinical entities of interest from sentences
 2. Link and Disambiguate detected entities to existing ontologies
 3. Detect relation between entities if present

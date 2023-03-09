@@ -37,36 +37,39 @@ are pre-defined.
 
 ### Real world Examples
 - **Sentiment Analysis** : It refers to predicting the sentiment of a text, whether the sentiment is positive
-    or negative. Thus, this is a binary classification problem with only two classes positive and negative.
+    or negative turning it into a binary classification problem.
     Useful in scenarios to assess sentiment of customers like in movie or product reviews, service review,
     Social media and news comments etc.
 - **Topic detection** : Could be a multi-class or multi-label problem, for example, to help in tagging
     topics in social media posts, forums, research papers like in Quora, Stackoverflow, reddit, arxiv etc.
     Or in detecting Intent of what is requested for a chatbot.
-- **Sequential sentence classification** : Similar to topic detection, but
-    instead of predicting one topic independently for single input text, multiple topics are predicted
+- **Sequential sentence classification** : Similar to topic detection, but instead of predicting one topic 
+    independently for single input text, multiple topics are predicted
     for a sequence of text. For example, with research paper abstract as input predicting which sentences
     are part of introduction, which sentences shows procedure and which sentences give results. Another
     example is given a document automatically classify important sentences inside that document.
-### How it works and fine-tuned
+
+### How it works
 Fine-tuning text classification generally involves feeding complete input text into the transformer model and
 pooling/aggregating the transformer output in some way before forwarding the output to feed forward layers which can
 perform classification. The input text may also contain special tokens if necessary to provide special meaning to
-some parts of text, like assigning special token after every sentence in a paragraph.
+some parts of text, like assigning special token after every sentence in a paragraph. The below diagram summarizes
+the same approach where input sentence is fed and embeddings for the whole input sentence is extracted and aggregated
+from the first [CLS] special token.
 
-To do: Diagrams
+| ![](../assets/images/blogpost/classification_bert.png) |
+| *Fig 1. Fine-tuning text classification* |
 
-### Popular Datasets
 ## Token classification
 In token classification, as the name suggests, instead of classifying multiple set of words/tokens as in text classification,
 the task is to classify each token separately. Otherwise, the concept of classification remains the same. There are
 many popular subtypes this task can encompass.
 
 ### Real world Examples
-- **Named Entity Recognition** : In this task Entities can be comprised multiple tokens and the job of the classification
+- **Named Entity Recognition** : In this task Entities can be comprised of multiple tokens and the job of the classification
     task is to identify whether the correct tokens are entities and what type of entities they are. For example,
     in a sentence entities could refer to Names of people, organisations, Place, name of medicine, name of disease etc.
-    It is the job of the algorithm, given an input sentence predict the entities of interest present in that sentence
+    It is the job of the algorithm, given an input sentence, predict the entities of interest present in that sentence
     correctly. This could be useful in applications like identifying what places were mentioned in text, data mining
     applications to analyze important entities were mentioned and in which context they were used, for example finding
     symptoms in Electronic medical record.
@@ -80,14 +83,14 @@ many popular subtypes this task can encompass.
 The output of token classification algorithms often act as important inputs to more sophisticated algorithms like
 in a chatbot.
 
-### How it works and fine-tuned
+### How it works
 Fine-tuning works similar to text classification, where input is the text containing the tokens which need to be
 classified, but instead of pooling/aggregating whole text embeddings, classification head is applied to each token
-separately. An example is provided below.
+separately. An example of how it looks like can be seen below:
 
-To do : diagram
+| ![](../assets/images/blogpost/entity_classification.png) |
+| *Fig 2. Fine-tuning token classification* |
 
-### Popular Datasets
 ## Text generation
 The text generation task can be any task which requires **generating** new text given text the model has seen so far.
 Here, generating means, producing new text which may/may not be present in the input text. The newly generated
@@ -95,7 +98,7 @@ text should be analogous in some way to the input text. This is in contrast to c
 above which did not require generative capabilities. There exist many such text generation tasks as explained below.
 
 ### Real world Examples
-- **Next word/s prediction** : As the name suggests, this type of task's goal is to predict automatically relevant next
+- **Next word/s prediction** : This type of task's goal is to predict automatically relevant next
     words given previous words. For example, in applications like Autocomplete feature for fast typing, assisted searching, writing and
     grammar assistance, automated reply in chatbots etc.
 - **Text rephrasing** : Since, the model is capable of generating new words or sentences, it can also be used for
@@ -104,21 +107,26 @@ above which did not require generative capabilities. There exist many such text 
 - **Text summarization** : Summarization of large documents to small summaries in abstractive way will need both identifying
     and rephrasing important information in appropriate grammatical manner. This can only be done using model text
     generation capabilities.
-### How it works and fine-tuned
+### How it works
 Unlike, the classification approaches which could be solved using only the encoder portion of transformer architecture,
 the generative task generally requires either a decoder alone or both encoder and decoder. Some autoregressive
 mechanism is required for generative task as generating new words/tokens always need information about what was
 predicted by the model itself in previous time steps. A general outline of how generative tasks would work and
-fine-tuned can be seen in the diagram below.
+fine-tuned can be seen in the diagram below. A decoder only architecture could also work in this case but adding an
+encoder helps in adding bidirectional context for text generation.
 
-To do : diagram
+| ![](../assets/images/blogpost/enc-dec-img.png) |
+| *Fig 3. Fine-tuning Text generation* |
 
-### Popular Datasets
+In this case instead of using only encoder both encoder and decoder is required, encoder for encoding the input text
+and learning representation from it and then forwarding that representation to decoder to output tokens in autoregressive
+manner where the tokens predicted are fed back into decoder to predict further new tokens until end token is reached.
+
 ## Information Extraction
 Any task which would help in extracting/pinpointing relevant information from a document given a query can be
 regarded as an information extraction problem. Information extraction can be solved using either transforming the
 problem to classification task or text generation task. The difference from types of tasks is that here, instead of
-just providing input text to act upon, the model is provided both input text for information extraction and a query
+just providing input text to act upon, the model is provided both input text and a query
 to find that information in the input text. Popular information extraction tasks include:
 
 ### Examples
@@ -129,24 +137,20 @@ to find that information in the input text. Popular information extraction tasks
     the answer needs to be generative using generative modelling because either exact extractive answer might not be
     present or rephrased answer is more suitable.
 - **Information retrieval** : This is similar to Extractive Question Answering the text where information is to be
-    searched is very large and cannot all fit in one model. Thus, information retrieval is the task of finding locations
+    searched is very large and cannot fit in model parameters. Thus, information retrieval is the task of finding locations
     or paragraphs where the answer to the input query is liable to find. This information can be input into extractive
     question answering pipeline.
 
-### How it works and fine-tuned
+### How it works
 Its working is almost same as classification model. For example, extractive question answering can be solved by
-token classification where each token is classified whether it is start or end token of correct answer. The tokens
+token classification shown in fig 2, where each token is classified whether it is start or end token of correct answer. The tokens
 having the highest probabilities will be chosen as answers. Similarly, for abstractive question answering, first the
-input text and question would be input into the encoder and the decoder would be used autoregressively to predict
-the generated answer. The diagram below summarizes the working.
-
-To do : diagram
-
-### Popular datasets
+input text and question would be input into the encoder, and the decoder would be used autoregressively to predict
+the generated answer similar to the text generation model shown in fig 3.
 
 ## Embeddings generation and Similarity prediction
 In all the above tasks discussed, the prediction by a model happens immediately after it receives the necessary
-input. This type of prediction is very well suited for many applications but can be slow when we want to perform
+input. This type of prediction is very well suited for many applications but can be extremely slow when we want to perform
 a very large number of predictions in very short time. Suppose, we want to run a K nearest neighbour algorithm
 on corpus having 100,000 documents. By following above approaches, given an input document, we first will have to generate
 embedding of the input document and then generate embeddings for each of the 100,000 documents and compare them each.
@@ -160,24 +164,19 @@ they are capable of generating effective embeddings which could then be stored a
     duplicate document search, plagiarism detection, Contextual search etc
 - Clustering : When model is capable of generating appropriate embeddings of text where actual similar text is close
     to each other following some metric and dissimilar text are far away from each other, we can use clustering
-    algorithms like K means to cluster documents informatively which can cluster based on similar topics or relevant
+    algorithms like K means to cluster documents informatively based on similar topics or relevant
     criterion
 
-### How it works and fine-tuned
+### How it works
 Fine-tuning of appropriate embeddings generation can be done using creating suitable similarity/scoring function, and training
 the model by preparing right positive and negative samples. The idea will be to train the model parameters in such a
 way that similar items will have higher similarity score and dissimilar items will have very low or negative similarity
 scores. Loss function such as Triplet loss function, contrastive loss function and even simple cross entropy loss
 function could be utilized to fine-tune such model.
-The overview of this fine-tuning can be summarized using below diagram.
-
-To do : the diagram
-
-### Popular datasets
+SentenceBERT is one such example to achieve this.
 
 # Final thoughts
-As we saw, transformer models can be used to fine-tune many downstream NLP tasks, the reason for which
-they have become so popular. The use of such tasks in collaboration with each other can in turn
-help in building very complex applications in multiple domains including Entertainment and Social media, Medical and 
-Pharma, Sales and Accounting, Banking or any other domain which needs processing and understanding large amount of
-textual data.
+Transformer models can be used to fine-tune many downstream NLP tasks, the reason for which
+they have become so popular. The variety of downstream tasks that could be easily trained on top of a pre-trained
+Language model has resulted in re-using of same transformer architecture backbone to be utilized to solve many complex
+problems.
