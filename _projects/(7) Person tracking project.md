@@ -1,14 +1,14 @@
 ---
 name: Person searching and tracking in security  surveillance footage
 tools: [Tensorflow, CNN, SSD Object detection, DeepSort Object tracking]
-image: ../assets/images/entity_linking_new.png
+image: ../assets/images/person-tracking.png
 characteristic: [Client project]
 description: Build system to search and track a person in surveillance footage
 ---
 ### Objective
 A client in Security surveillance industry wants to create a customized solution to search for people and track their movement in surveillance video
 
-![preview](../assets/images/asr_arch_new.png)
+![preview](../assets/images/person-tracking.png)
 
 ### Data Requirements
 The client had access to thousands of hours of video data containing front facing video of people with visible faces
