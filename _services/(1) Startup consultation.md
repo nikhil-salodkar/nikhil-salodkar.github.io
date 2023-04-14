@@ -27,7 +27,7 @@ Having extensive experience in developing, architecting and planning Machine lea
 consultant helping to make the first steps correctly so that your project delivery journey is smoother
 and in correct direction.
 I can provide consultation in any and all steps as mentioned below:
-![startup consultation](../assets/images/startup_small.png)
+![startup consultation](../assets/images/startup_small.png) 
 
 - **Project understanding:** Understanding the business requirements thoroughly, converting business problem statement
 to technical problem statement, Explaining the data requirements, laying out the initial steps to start the project
