@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Training Gymnasium agents using Stable Baselines 3",
+      "category" : "",
+      "tags"     : "Deep Reinforcement Learning",
+      "url"      : "/blog/Training-Gymnasium-agents-using-stable-baselines3",
+      "date"     : "2023-04-25 00:00:00 +0530"
+    } ,
+  
+    {
       "title"    : "A brief look into Latent diffusion models components",
       "category" : "",
       "tags"     : "Generative Modelling, Diffusion, Huggingface",
