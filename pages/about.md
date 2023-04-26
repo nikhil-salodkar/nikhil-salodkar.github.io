@@ -23,7 +23,7 @@ Apart from being an expert in Data Science related concepts, I constantly thrive
 to possess working knowledge of correlated technical areas in Web Development, API development, and DevOps, 
 understanding of which becomes necessary if we want to build robust end-to-end applications.
 
-Do checkout [My Services](./services.md) to understand in what ways I can be of help to you.
+Do checkout [My Services](/services/) to understand in what ways I can be of help to you.
 
 My Employment and Educational Journey is summarized below:
 
