@@ -1,0 +1,23 @@
+- name: PyTorch
+  percentage: 85
+  color: success
+
+- name: PyTorch Lightning
+  percentage: 85
+  color: success
+
+- name: Huggingface
+  percentage: 80
+  color: success
+
+- name: Weights & Biases
+  percentage: 80
+  color: success
+
+- name: TorchServe
+  percentage: 80
+  color:
+
+- name: Tensorflow 2.x
+  percentage: 60
+  color: warning

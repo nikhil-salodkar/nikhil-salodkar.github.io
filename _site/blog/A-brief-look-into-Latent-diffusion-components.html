@@ -21,12 +21,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="A brief look into Latent diffusion models components">
-  <meta property="og:description" content="A brief look into components of latent diffusion model and how they interconnect with each other">
+  <meta property="og:title" content="Components in Latent Diffusion models">
+  <meta property="og:description" content="A brief look into components of a latent diffusion model and how they interconnect with each other">
   <meta property="og:image" content="/assets/images/profile-pic.jpg">
 
-  <title>A brief look into Latent diffusion models components</title>
-  <meta name="description" content="A brief look into components of latent diffusion model and how they interconnect with each other">
+  <title>Components in Latent Diffusion models</title>
+  <meta name="description" content="A brief look into components of a latent diffusion model and how they interconnect with each other">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -61,11 +61,13 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto"><a class="nav-item nav-link " href="/about/">About</a>
 
+      <a class="nav-item nav-link " href="/skills/">Skills</a>
+
       <a class="nav-item nav-link " href="/projects/">Projects</a>
 
       <a class="nav-item nav-link " href="/services/">My Services</a>
 
-      <a class="nav-item nav-link active" href="/blog/">Blog</a>
+      <a class="nav-item nav-link active" href="/blog/">Blogs</a>
 
       <a class="nav-item nav-link " href="/contact/">Contact</a>
 
@@ -77,7 +79,7 @@
 
 </nav>
     <div class="col-lg-10 mx-auto mt-5 markdown-body">
-  <h1><b>A brief look into Latent diffusion models components</b></h1>
+  <h1><b>Components in Latent Diffusion models</b></h1>
 
 <p class="post-metadata text-muted">
   05 February 2023 -  
@@ -98,29 +100,29 @@
     </a>
     </p>
 
-<p>Generative AI has been predominantly talked about in the media and social media in 2022 and 2023 especially since its
+<p>Generative AI has been predominantly talked about in the media and social media in 2022 and 2023, especially since its
 capabilities have been shown publicly by OpenAI’s DALL-E 2 and Stable Diffusion models by Stability AI. The impressive
-capability to generate beautiful looking images like in figure below has mesmerised us on the innovative potential of
+capability to generate beautiful looking images like in the figure below has mesmerised us on the innovative potential of
 Deep Learning models and AI in general. Being Data Scientists, our curiosity extends beyond just using the models and
 playing around with it. Understanding these models in detail will help us to appreciate properly the power of these models,
 how might we improve upon them, what are their limitations, and make informed use of them.</p>
 
 <p>Thus, in this blogpost we will go a little bit deeper into understanding such models and their components. We will
-especially look into Stable diffusion model open sourced by StabilityAI which can convert textual prompts into images and use the wonderful Huggingface Library
+especially look into Stable diffusion model open-sourced by StabilityAI which can convert textual prompts into images and use the wonderful Huggingface Library
 “Diffusers” to navigate its working.</p>
 
 <p>Thus, we will look into:</p>
 <ul>
   <li>How to load a pre-trained diffusion model and pipeline</li>
   <li>Perform a simple inference using the pipeline</li>
-  <li>Understand basic mechanism behind how training and inference in Latent diffusion model works</li>
+  <li>Understand the basic mechanism behind how training and inference in Latent diffusion model works</li>
   <li>Check out individual components and models inside this stable diffusion pipeline</li>
 </ul>
 
 <table>
   <tbody>
     <tr>
-      <td><img src="../assets/images/blogpost/stable_diffusion_examples.png" alt="" /> Samples generated using Generative models</td>
+      <td><img src="../assets/images/blogpost/stable_diffusion_examples.png" alt="" />Samples generated using Generative models</td>
     </tr>
     <tr>
       <td><em>Source: <a href="https://creator.nightcafe.studio/stable-diffusion-image-generator">https://creator.nightcafe.studio/stable-diffusion-image-generator</a></em></td>
@@ -129,18 +131,18 @@ especially look into Stable diffusion model open sourced by StabilityAI which ca
 </table>
 
 <h3 id="setup">Setup</h3>
-<p>To try the code snippets on your own you can either use colab or your own environment but will need to prepare your system
-to run PyTorch code with Huggingface Deffusers library. The installation instructions are provided <a href="https://huggingface.co/docs/diffusers/installation">here</a>.</p>
+<p>To try the code snippets on your own, you can either use colab or your own environment but will need to prepare your system
+to run PyTorch code with the Huggingface Diffusers library. The installation instructions are provided <a href="https://huggingface.co/docs/diffusers/installation">here</a>.</p>
 
 <h3 id="loading-a-pipeline-with-pre-trained-models">Loading a pipeline with pre-trained models</h3>
-<p>In huggingface Deffusers library, pipeline refers to a class which has methods to load all the components required
-to run inference on that particular diffusion model. In below snippet we are loading <strong>stable-diffusion-2-1</strong> pipeline
+<p>In huggingface Diffusers library pipeline refers to a class which has methods to load all the components required
+to run inference on that particular diffusion model. In the below snippet, we are loading <strong>stable-diffusion-2-1</strong> pipeline
 from <strong>stabilityai</strong> which will download the models if not already downloaded and cached.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from diffusers import StableDiffusionPipeline
 repo_id = "stabilityai/stable-diffusion-2-1"
 pipe = StableDiffusionPipeline.from_pretrained(repo_id, torch_dtype=torch.float16)
 </code></pre></div></div>
-<p>We are loading a variant model having half precision weights only to save memory and time when working with these models.
+<p>We’re loading a variant model having half precision weights only to save memory and time when working with these models.
 If we <code class="language-plaintext highlighter-rouge">pipe.config</code> we get the output:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FrozenDict([('vae', ('diffusers', 'AutoencoderKL')),
             ('text_encoder', ('transformers', 'CLIPTextModel')),
@@ -151,11 +153,11 @@ If we <code class="language-plaintext highlighter-rouge">pipe.config</code> we g
             ('feature_extractor', ('transformers', 'CLIPImageProcessor')),
             ('requires_safety_checker', False)])
 </code></pre></div></div>
-<p>As we can see the pipeline loaded many components. Each component fulfills a particular purpose.</p>
+<p>As we can see, the pipeline loaded many components. Each component fulfills a particular purpose.</p>
 <ul>
   <li><strong>VAE</strong>: Variational Auto encoder, used to compress the input images into lower dimensional latents which are then
-  in turn used for training the model to make diffusion training faster. Its Encoder is used only during training and 
-  decoder is used during final step of inference (converting the final denoised image latents to image)</li>
+  in turn used for training the model to make diffusion training faster. Its Encoder is used only during training, and 
+  decoder is used during the final step of inference (converting the final denoised image latents to image)</li>
   <li><strong>Text Encoder</strong>: Transformer model used to convert input text into embeddings which guide what kind of image to be
   generated.</li>
   <li><strong>Tokenizer</strong>: Tokenizer for Text Encoder</li>
@@ -163,13 +165,13 @@ If we <code class="language-plaintext highlighter-rouge">pipe.config</code> we g
   the noise which was added to the image at a particular step.</li>
   <li><strong>Scheduler</strong>: It has logic to determine what, how and for how many steps noise should be added and predicted noise
   should be removed. There are many different schedulers existing currently, some more efficient than others.</li>
-  <li><strong>Safety checker</strong>: In this particular case by default no safety_checker was initialized but in general it refers
-  to a model which given image features from feature_extractor returns whether the image features are NSFW or not.</li>
+  <li><strong>Safety checker</strong>: In this particular case, by default, no safety_checker was initialized but in general it refers
+  to a model which, given image features from feature_extractor, returns whether the image features are NSFW or not.</li>
 </ul>
 
 <p>We will look into each component in more detail later.</p>
 
-<p>If we run <code class="language-plaintext highlighter-rouge">pipe.to('cuda')</code>, we get the output showcasing all the different components that have been loaded into
+<p>If we run <code class="language-plaintext highlighter-rouge">pipe.to('cuda')</code>, we get the output showcasing all the different components that’ve been loaded into
 the gpu.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>StableDiffusionPipeline {
   "_class_name": "StableDiffusionPipeline",
@@ -212,10 +214,9 @@ generator = torch.Generator('cuda').manual_seed(5)
 prompt = 'A cute cat wearing a military cap'
 %time image = pipe(prompt, generator=generator, width=720, height=720, num_inference_steps=50)
 </code></pre></div></div>
-<p>Here, generator was used to seed the image generation process for reproducible results and, we can specify width and 
-height of image if required along with num_inference_steps denoising steps to take to generate this image. Keep in mind
-that the image generation won’t work well with low resolution images like below 512 as the original model was trained
-using high resolution images like 768X768 pixels.
+<p>Here, generator was used to seed the image generation process for reproducible results, and we can specify the width and height of the image if required along with num_inference_steps denoising steps to take to generate this image. Keep in mind
+that the image generation won’t work well with low-resolution images like below 512 as the original model was trained
+using high-resolution images like 768X768 pixels.
 The output got is the image:
 <img src="../assets/images/blogpost/original_cat.png" alt="" /></p>
 <h3 id="inference-and-training-mechanism">Inference and training mechanism</h3>
@@ -234,7 +235,7 @@ of the model as mentioned in the paper.</p>
   </tbody>
 </table>
 
-<p>As seen in the image above a latent diffusion model has three main components, A Variational autoencoder with encoder and
+<p>As seen in the image above, a latent diffusion model has three main components, A Variational autoencoder with encoder and
 decoder to convert image to latent space and vice versa as remarked as <strong>Pixel Space</strong>, A Denoising U-Net model which 
 works in the latent space, and conditioning encoder to help encode conditioning embedding into the Denoising deffuion
 model.</p>
@@ -242,12 +243,12 @@ model.</p>
 <p><strong>Inference Phase</strong>: The steps during inference phase are:</p>
 <ol>
   <li>A random noise is sampled from a distribution which was used during the training phase for timestep T (num_inference_steps)</li>
-  <li>The condition (in our case text) is tokenized and fed into text encoding model to get the text embeddings</li>
-  <li>The generated random noise can be interpreted a noisy image Latent.</li>
+  <li>The condition (in our case text) is tokenized and fed into a text-encoding model to get the text embeddings</li>
+  <li>The generated random noise can be interpreted as a noisy image Latent.</li>
   <li>The noisy image Latent is added as input to the Denoising U-Net for step T-1 along with embedding of condition
- using cross attention mechanism</li>
+ using a cross-attention mechanism</li>
   <li>The Denoising U-Net model predicts the noise present for that step</li>
-  <li>The predicted noise is subtracted from the noisy image latent from previous step</li>
+  <li>The predicted noise is subtracted from the noisy image latent from the previous step</li>
   <li>The noisy image after subtraction represents a new less noisy image latent</li>
   <li>The steps from 4 to 7 are repeated until T reaches zero</li>
   <li>At latent embedding generated at step zero is fed through the VAE decoder resulting in the generated image</li>
@@ -258,8 +259,8 @@ model.</p>
   <li>Train an autoencoder model or use a good pre-trained one</li>
   <li>Train or use pre-trained Conditioning encoder (In stable diffusion case <a href="https://openai.com/research/clip">CLIP</a> was used)</li>
   <li>Encode an image to lower latent dimension using encoder of VAE</li>
-  <li>Use diffusion process to add noise onto the latent image for each diffusion step</li>
-  <li>Using the noise that was added as ground truth and text embedding with cross attention as output train the De-noising
+  <li>Use the diffusion process to add noise onto the latent image for each diffusion step</li>
+  <li>Using the noise that was added as ground truth and text embedding with cross-attention as output train the De-noising
  diffusion model to predict added noise correctly</li>
   <li>Repeat from step 3 to step 5 until convergence or generated images start looking adequate when image latent embeddings
  are decoded back to pixelated images</li>
@@ -292,9 +293,9 @@ cat_image = input_image.to('cuda')
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  torch.Size([1, 4, 64, 64])
 </code></pre></div>    </div>
     <p>which is very less compared to the original image in pixel space. And this is the encoded_image embedding that is worked
-  upon by the UNET instead making the Latent diffusion process much faster.</p>
+  upon by the UNET, making the Latent diffusion process much faster.</p>
 
-    <p>Now lets try to get back the <code class="language-plaintext highlighter-rouge">encoded_output</code> back to pixel space using the decoder and see if we get the same input
+    <p>Now let’s try to get back the <code class="language-plaintext highlighter-rouge">encoded_output</code> back to pixel space using the decoder and see if we get the same input
   image.</p>
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  def numpy_to_pil(images):
           """
@@ -322,7 +323,7 @@ cat_image = input_image.to('cuda')
     <p>We get the generated image tensor back as  <code class="language-plaintext highlighter-rouge">torch.Size([1, 3, 512, 512])</code> and get the almost exact looking image as shown below
   even though this is a newly generated image with slightly different tensor values.
   <img src="../assets/images/blogpost/cat_regenerated.png" alt="" />
-  In this way we know that the variational autoencoder as an individual component works very well.
+  In this way, we know that the variational autoencoder as an individual component works very well.
   Let’s see what the architecture of the whole VAE looks like by running the command:</p>
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  from torchinfo import summary
   summary(pipe.vae, input_data=input_image, col_names=['input_size', 'output_size', 'num_params'], depth=4)
@@ -418,7 +419,7 @@ cat_image = input_image.to('cuda')
   print(prompt_embeds[0].shape
 </code></pre></div>    </div>
     <p>We get the output showing that the model returns the last hidden state with embedding shape (77, 1024) which will be used
-  as input to provide condition to the Denoising UNet model. The dimensions here shows that this particular model can take
+  as input to provide condition to the Denoising UNet model. The dimensions here show that this particular model can take
   max number of 77 input tokens and each token has embedding of size 1024.</p>
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  BaseModelOutputWithPooling(last_hidden_state=tensor([[[-0.3132, -0.4478, -0.0083,  ...,  0.2544, -0.0328, -0.2959],
            [ 0.1989, -1.6963, -0.8945,  ...,  0.4661, -0.0971, -2.1465],
@@ -463,9 +464,9 @@ cat_image = input_image.to('cuda')
     <h4 id="denoising-unet">Denoising UNet</h4>
     <p>The Denoising UNet is the main component of the whole Latent diffusion model because this model is the one which actually
   is able to iteratively convert a random noise following a particular distribution to a good image embedding by predicting
-  the noise which is present in the input which can then be subtracted from original noisy image to get a less noisy image.</p>
+  the noise which is present in the input which can then be subtracted from the original noisy image to get a less noisy image.</p>
 
-    <p>The UNet forward method takes three mandatory input arguments - The encoded noisy image, the encoded text prompt for condition,
+    <p>The UNet forward method takes three mandatory input arguments-The encoded noisy image, the encoded text prompt for condition,
   and the denoising step for which prediction needs to be done.</p>
 
     <p>Let’s try this out for 4th step as an example:</p>
@@ -585,18 +586,24 @@ cat_image = input_image.to('cuda')
     "trained_betas": null
   }
 </code></pre></div>    </div>
-    <p>which shows that we are using DDIMScheduler with its version and different default hyper-parameters. It has methods
-  such as set_timesteps(to set the max timesteps for inference) and step(predict the noise at previous time step) to facilitate
-easier training and inference operations. To get more information around different schedulers and their usage check out
+    <p>which shows that we’re using DDIMScheduler with its version and different default hyperparameters. It has methods
+  such as set_timesteps(to set the max timesteps for inference) and step(predict the noise at the previous time step) to facilitate
+easier training and inference operations. To get more information around different schedulers and their usage, check out
 <a href="https://huggingface.co/docs/diffusers/api/schedulers/overview">Huggingface diffusers documentation</a>.</p>
   </li>
   <li>
     <h4 id="safety-checker-and-feature-extractor">Safety Checker and feature extractor</h4>
-    <p>Safety checker a model which checks if the NSFW content is being generated and if so flags it with a warning and generates
+    <p>Safety checker a model which checks if the NSFW content is being generated and if so, flags it with a warning and generates
 a blank image if the “requires_safety_checker” is set to True. “feature_extractor” is used to extract features from generated
 image to be fed to the safety_checker model.</p>
   </li>
 </ul>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>In this blogpost, we saw how different components work in tandem in a Latent diffusion model using the transformer’s
+Diffusers library.
+For complex models such as diffusion models, it is always a good practice to check out how individual
+components work to understand the working clearly.</p>
 
 
 

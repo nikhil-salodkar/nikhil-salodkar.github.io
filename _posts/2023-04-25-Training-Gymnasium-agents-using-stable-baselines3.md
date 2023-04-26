@@ -1,10 +1,10 @@
 ---
-title: Training Gymnasium agents using Stable Baselines 3
+title: Training Deep RL agents using Stable Baselines 3
 tags: [Deep Reinforcement Learning]
 style: fill
 color: primary
 comments: true
-description: Introduction on how to use stable baselines 3 library for training Reinforcement learning agents
+description: Introduction on how to use Gymnasium and stable baselines 3 library for training Reinforcement learning agents
 ---
 Reinforcement learning (RL) is composed of a set of techniques to train an agent to behave in a manner which would be 
 beneficial for the agent to reach towards its goal or keep doing actions to accumulate as much reward as possible.

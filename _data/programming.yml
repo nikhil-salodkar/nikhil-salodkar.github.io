@@ -1,0 +1,23 @@
+- name: Python 3.x
+  percentage: 95
+  color: success
+
+- name: Git
+  percentage: 85
+  color: success
+
+- name: SQL
+  percentage: 70
+  color: secondary
+
+- name: Javascript
+  percentage: 60
+  color: warning
+
+- name: Java
+  percentage: 55
+  color: warning
+
+- name: C++
+  percentage: 50
+  color: warning

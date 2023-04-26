@@ -1,0 +1,16 @@
+- name: FastAPI
+  percentage: 80
+  color: success
+
+- name: Streamlit
+  percentage: 80
+  color: success
+
+- name: Cloud services(AWS/GCP)
+  percentage: 70
+  color: secondary
+
+- name: Kubernetes
+  percentage: 60
+  color: warning
+

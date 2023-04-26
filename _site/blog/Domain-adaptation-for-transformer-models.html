@@ -22,11 +22,11 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Domain adaptation in transformer models">
-  <meta property="og:description" content="Description of domain adaptation techniques">
+  <meta property="og:description" content="Application of domain adaptation techniques to enhance the performance of transformer models">
   <meta property="og:image" content="/assets/images/profile-pic.jpg">
 
   <title>Domain adaptation in transformer models</title>
-  <meta name="description" content="Description of domain adaptation techniques">
+  <meta name="description" content="Application of domain adaptation techniques to enhance the performance of transformer models">
 
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
 
@@ -61,11 +61,13 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto"><a class="nav-item nav-link " href="/about/">About</a>
 
+      <a class="nav-item nav-link " href="/skills/">Skills</a>
+
       <a class="nav-item nav-link " href="/projects/">Projects</a>
 
       <a class="nav-item nav-link " href="/services/">My Services</a>
 
-      <a class="nav-item nav-link active" href="/blog/">Blog</a>
+      <a class="nav-item nav-link active" href="/blog/">Blogs</a>
 
       <a class="nav-item nav-link " href="/contact/">Contact</a>
 
@@ -99,23 +101,23 @@ and fine-tuned with small to moderately sized supervised datasets to solve downs
 in pre-training of Language models, and testing performance is done using general text corpus like Wikipedia, News
 articles, Reddit comments and mixture of such types of text corpus sources. The main reason is easier availability 
 of such resources and trying to acquire as much text and as varied text as possible for research purposes. So, many
-of the popular pre-trained models turned out to be pre-trained using general purpose text which cannot necessarily
+of the popular pre-trained models turned out to be pre-trained using general purpose text which can’t necessarily
 be categorized as a particular domain.</p>
 
-<p>But, in real life and most of the production scenarios applications are made to handle a particular domain of text
+<p>But in real life and most of the production scenarios, applications are made to handle a particular domain of text
 data. For example, application to summarize news articles, application to perform search over scientific research
-documents, chatbot built to answer education related queries and so on. Thus, these specialized applications focus
+documents, chatbot built to answer education-related queries, and so on. Thus, these specialized applications focus
 on particular domains of their own and, it begs the question, whether using a general purpose trained language
 model to train for such specialized domain is the best thing to do. This question led to the research community in
 seeking the area of domain adaptation for language models.</p>
 
-<p>In this post we will understand what domain adaptation is, its benefits and how it can be done.</p>
+<p>In this post, we will understand what domain adaptation is, its benefits and how it can be done.</p>
 
 <h2 id="what-is-domain-adaptation-and-why-it-is-important">What is Domain Adaptation and why it is important?</h2>
 <p>Domain adaptation can be defined as any training technique which can help a pre-trained Language model to better
 adapt itself to solve tasks in a specialized NLP text area.</p>
 
-<p>This can be important because in real world there are many NLP domains with common tasks which can benefit if 
+<p>This can be important because in real world scenarios, there are many NLP domains with common tasks which can benefit if 
 the language model is adapted suitably. Some common NLP domains and popular tasks are as given below:</p>
 <ul>
   <li><strong>Medical and/or Pharmaceutical domain</strong> : Popular tasks and applications in this domain include
@@ -130,7 +132,7 @@ pertaining to diseases, medicine, proteins, symptoms, side effects etc.</li>
   <li><strong>General News domain</strong> :
     <ul>
       <li>News article summarization</li>
-      <li>Article recommendation based on readers interest and past history</li>
+      <li>Article recommendation based on readers’ interest and past history</li>
       <li>Clustering news articles and finding similar or correlated news</li>
     </ul>
   </li>
@@ -146,13 +148,13 @@ pertaining to diseases, medicine, proteins, symptoms, side effects etc.</li>
 <p>Many NLP applications are focused on a particular industry and may also have focused subdomain in that industry,
 like in Pharma industry language around clinical trials might be different to drug discovery research and very
 different compared to clinical Electronic Medical records language. There could be difference in vocabulary,
-sentence structure, short forms, language formality and so on. Thus, in most real world cases it may become
-necessary to specialize language model to get better performance on interested tasks.</p>
+sentence structure, short forms, language formality and so on. Thus, in most real world cases, it may become
+necessary to specialize a language model to get better performance on unique tasks.</p>
 
-<p>To create such specialized models one approach is to train the transformer based language models directly using
+<p>To create such specialized models, one approach is to train the transformer-based language models directly using
 relevant domain text data. This has been done on some popular models like <strong>BioMegatron, Sci-Bert, BioBERT</strong> etc, which
-were pre-trained directly on specialized text corpus like Pubmed extracts and other scientific journals. But, in
-most cases for specialized domains there either would be dearth in quantity of text necessary to train a full-fledged
+were pre-trained directly on specialized text corpus like Pubmed extracts and other scientific journals. But in
+most cases for specialized domains, there either would be dearth in the quantity of text necessary to train a full-fledged
 language model, or it would be too computationally expensive and time-consuming.</p>
 
 <p>Thus, it becomes prudent that we find useful training methods that could help in adaptation of existing Language models
@@ -163,20 +165,20 @@ more efficiently.</p>
 proposing these ideas.</p>
 
 <h4 id="adapting-domain-by-continuing-the-pre-training-using-in-domain-dataset">Adapting domain by continuing the pre-training using in-domain dataset</h4>
-<p>This idea is intelligently introduced in the paper by Gururangan et al. [1] titled “Don’t Stop Pretraining: Adapt Language Models to Domains and Tasks”
-  where they investigated the performance improvement of existing Language model when <strong>“Domain adaptive pre-training” (DAPT)</strong> is
-  performed in high and low-resource setting. They considered four domains - biomedical (BIOMED), computer science (CS), news and reviews
+<p>This idea is intelligently introduced in the paper by Gururangan et al. [1] Titled “Don’t Stop Pretraining: Adapt Language Models to Domains and Tasks”
+  where they investigated the performance improvement of an existing Language model when <strong>“Domain adaptive pre-training” (DAPT)</strong> is
+  performed in high and low-resource setting. They considered four domains — biomedical (BIOMED), computer science (CS), news and reviews
   and adapted the Roberta model.
   <strong>Some of the important observations were:</strong></p>
 <ul>
-  <li>DAPT improves over Roberta in all domains especially for BIOMED, CS, and REVIEWS where the target domain is more distant than ROBERTA’s
+  <li>DAPT improves over Roberta in all domains, especially for BIOMED, CS, and REVIEWS where the target domain is more distant than ROBERTA’s
   source domain. Thus, the more unique the target domain, the more useful domain adaptation could be. This includes target
   domain’s difference in vocabulary as well as target domain’s difference in context and meaning.</li>
-  <li>For very specialized domains it is sometimes very difficult to even get a large scale untagged text corpus. In such cases
+  <li>For very specialized domains, it is sometimes very difficult to even get a large scale untagged text corpus. In such cases, 
   a technique called <strong>“Task adaptive pre-training (TAPT)”</strong> could be applied where pre-training is done on the unlabeled 
   training set itself which is later going to be used for supervised training. The TAPT approach uses a far smaller pre-training
   corpus, but one that is much more task-relevant. TAPT could be done on top of DAPT as well and is especially useful when
-  task data is narrowly defined subset of a broader domain. <strong>Fig 1</strong> from the paper shows the summary of the improvements when 
+  task data is a narrowly defined subset of a broader domain. <strong>Fig 1</strong> from the paper shows the summary of the improvements when 
   DAPT AND TAPT is performed on different datasets and tasks.</li>
 </ul>
 
@@ -192,11 +194,11 @@ proposing these ideas.</p>
 </table>
 
 <h4 id="updating-tokenization-strategy-andor-the-vocabulary">Updating tokenization strategy and/or the vocabulary</h4>
-<p>Another approach that could be relevant for adapting to a new domain can be adapting to a new vocabulary most pertinent
-  to the task domain at hand. In the DAPT and TAPT discussed above the vocabulary was kept the same even though domain adapted.
-  For many specialized domains vocabulary differs significantly compared to vocabulary of general domain. For example,
+<p>Another approach that could be relevant for adapting to a new domain can be adapting to a new vocabulary which is most pertinent
+  to the task domain at hand. In the DAPT and TAPT discussed above, the vocabulary was kept the same even though the domain was different.
+  For many specialized domains, vocabulary differs significantly compared to vocabulary of general domain. For example,
   consider this example <strong>Fig 2</strong> from paper [2] titled “AVocaDo: Strategy for Adapting Vocabulary to Downstream Domain” where specialized
-  domain can include complicated words which won’t be tokenized in efficient and meaningful manner using the general domain
+  domain can include complicated words which won’t be tokenized in an efficient and meaningful manner using the general domain
   vocabulary.</p>
 
 <table>
@@ -215,10 +217,10 @@ proposing these ideas.</p>
   The paper [2] showcases strategies for fine-tuning with regularization to adapt and add specialized tokenization which
   could result in better performance of Language models.</p>
 
-<p>Another tokenization and vocabulary adapting approach is outlined in paper [3] titled “INDOBERTWEET: A Pretrained Language Model for Indonesian Twitter
+<p>Another tokenization and vocabulary adapting approach is outlined in the paper [3] titled “INDOBERTWEET: A Pretrained Language Model for Indonesian Twitter
   with Effective Domain-Specific Vocabulary Initialization”, where they show innovative technique of initializing domain-specific
-  vocabulary to improve pretraining from scratch using resource limited corpus.
-  They concluded that using the averaging of subword embeddings is more effective tokenization initializing technique for 
+  vocabulary to improve pretraining from scratch using resource-limited corpus.
+  They concluded that using the averaging of subword embeddings is a more effective tokenization-initializing technique for 
   newly formed more holistic tokens in specialized domains which reduces the overhead of domain-adaptive pre-training by 80% compared
   to previously token embeddings initializing methods.</p>
 

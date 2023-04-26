@@ -12,4 +12,4 @@ Model Optimization]
 I can definitely be of help in following ways:**
 1. Guidance in building solution architecture for your production environment
 2. Help with deploying scalable Model serving environment either in cloud or edge
-3. Support with integrating newly built ML services in your existing application
+3. Support for integrating newly built ML services in your existing application

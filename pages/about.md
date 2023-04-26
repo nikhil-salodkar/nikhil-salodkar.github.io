@@ -14,12 +14,14 @@ who want to leverage Machine Learning techniques to solve/automate or improve th
 
 I can apply Deep learning techniques to wide breadth of technical domains including Natural Language Processing,
 Computer Vision, Custom speech recognition & generation, Content based recommendation, 
-Time series based recommendation and forecasting and Semi-supervised learning.
+Time series based recommendation and forecasting, Semi-supervised learning and Reinforcement Learning.
 
-Have real world exposure in dealing with variety of business domains especially in Entertainment, Sales, 
-Healthcare and Life Sciences. My computer science academic background and extensive experience in working 
-with Linux operating system helps me to be very productive and time efficient when debugging problems 
-that may arise unexpectedly in the course of challenging projects.
+Have real world exposure in dealing with a variety of business domains, especially in Entertainment, Sales, 
+Healthcare and Life Sciences.
+
+Apart from being an expert in Data Science related concepts, I constantly thrive 
+to possess working knowledge of correlated technical areas in Web Development, API development, and DevOps, 
+understanding of which becomes necessary if we want to build robust end-to-end applications.
 
 Do checkout [My Services](./services.md) to understand in what ways I can be of help to you.
 

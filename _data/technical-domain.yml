@@ -1,0 +1,15 @@
+- name: Natural language understanding
+  percentage: 90
+  color: success
+
+- name: Computer Vision
+  percentage: 90
+  color: success
+
+- name: Recommender Systems
+  percentage: 80
+  color: success
+
+- name: Reinforcement Learning
+  percentage: 75
+  color:

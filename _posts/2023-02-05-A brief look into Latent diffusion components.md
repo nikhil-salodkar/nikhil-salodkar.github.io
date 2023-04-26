@@ -1,45 +1,45 @@
 ---
-title: A brief look into Latent diffusion models components
+title: Components in Latent Diffusion models
 tags: [Generative Modelling, Diffusion, Huggingface]
 style: fill
 color: success
 comments: true
-description: A brief look into components of latent diffusion model and how they interconnect with each other
+description: A brief look into components of a latent diffusion model and how they interconnect with each other
 ---
-Generative AI has been predominantly talked about in the media and social media in 2022 and 2023 especially since its
+Generative AI has been predominantly talked about in the media and social media in 2022 and 2023, especially since its
 capabilities have been shown publicly by OpenAI's DALL-E 2 and Stable Diffusion models by Stability AI. The impressive
-capability to generate beautiful looking images like in figure below has mesmerised us on the innovative potential of
+capability to generate beautiful looking images like in the figure below has mesmerised us on the innovative potential of
 Deep Learning models and AI in general. Being Data Scientists, our curiosity extends beyond just using the models and
 playing around with it. Understanding these models in detail will help us to appreciate properly the power of these models,
 how might we improve upon them, what are their limitations, and make informed use of them.
 
 Thus, in this blogpost we will go a little bit deeper into understanding such models and their components. We will
-especially look into Stable diffusion model open sourced by StabilityAI which can convert textual prompts into images and use the wonderful Huggingface Library
+especially look into Stable diffusion model open-sourced by StabilityAI which can convert textual prompts into images and use the wonderful Huggingface Library
 "Diffusers" to navigate its working.
 
 Thus, we will look into:
 - How to load a pre-trained diffusion model and pipeline
 - Perform a simple inference using the pipeline
-- Understand basic mechanism behind how training and inference in Latent diffusion model works
+- Understand the basic mechanism behind how training and inference in Latent diffusion model works
 - Check out individual components and models inside this stable diffusion pipeline
 
-| ![](../assets/images/blogpost/stable_diffusion_examples.png) Samples generated using Generative models|
+| ![](../assets/images/blogpost/stable_diffusion_examples.png)Samples generated using Generative models|
 | *Source: [https://creator.nightcafe.studio/stable-diffusion-image-generator](https://creator.nightcafe.studio/stable-diffusion-image-generator)* |
 
 ### Setup
-To try the code snippets on your own you can either use colab or your own environment but will need to prepare your system
-to run PyTorch code with Huggingface Deffusers library. The installation instructions are provided [here](https://huggingface.co/docs/diffusers/installation).
+To try the code snippets on your own, you can either use colab or your own environment but will need to prepare your system
+to run PyTorch code with the Huggingface Diffusers library. The installation instructions are provided [here](https://huggingface.co/docs/diffusers/installation).
 
 ### Loading a pipeline with pre-trained models
-In huggingface Deffusers library, pipeline refers to a class which has methods to load all the components required
-to run inference on that particular diffusion model. In below snippet we are loading **stable-diffusion-2-1** pipeline
+In huggingface Diffusers library pipeline refers to a class which has methods to load all the components required
+to run inference on that particular diffusion model. In the below snippet, we are loading **stable-diffusion-2-1** pipeline
 from **stabilityai** which will download the models if not already downloaded and cached.
 ```
 from diffusers import StableDiffusionPipeline
 repo_id = "stabilityai/stable-diffusion-2-1"
 pipe = StableDiffusionPipeline.from_pretrained(repo_id, torch_dtype=torch.float16)
 ```
-We are loading a variant model having half precision weights only to save memory and time when working with these models.
+We're loading a variant model having half precision weights only to save memory and time when working with these models.
 If we ```pipe.config``` we get the output:
 ```
 FrozenDict([('vae', ('diffusers', 'AutoencoderKL')),
@@ -51,10 +51,10 @@ FrozenDict([('vae', ('diffusers', 'AutoencoderKL')),
             ('feature_extractor', ('transformers', 'CLIPImageProcessor')),
             ('requires_safety_checker', False)])
 ```
-As we can see the pipeline loaded many components. Each component fulfills a particular purpose.
+As we can see, the pipeline loaded many components. Each component fulfills a particular purpose.
 - **VAE**: Variational Auto encoder, used to compress the input images into lower dimensional latents which are then
-    in turn used for training the model to make diffusion training faster. Its Encoder is used only during training and 
-    decoder is used during final step of inference (converting the final denoised image latents to image)
+    in turn used for training the model to make diffusion training faster. Its Encoder is used only during training, and 
+    decoder is used during the final step of inference (converting the final denoised image latents to image)
 - **Text Encoder**: Transformer model used to convert input text into embeddings which guide what kind of image to be
     generated.
 - **Tokenizer**: Tokenizer for Text Encoder
@@ -62,12 +62,12 @@ As we can see the pipeline loaded many components. Each component fulfills a par
     the noise which was added to the image at a particular step.
 - **Scheduler**: It has logic to determine what, how and for how many steps noise should be added and predicted noise
     should be removed. There are many different schedulers existing currently, some more efficient than others.
-- **Safety checker**: In this particular case by default no safety_checker was initialized but in general it refers
-    to a model which given image features from feature_extractor returns whether the image features are NSFW or not.
+- **Safety checker**: In this particular case, by default, no safety_checker was initialized but in general it refers
+    to a model which, given image features from feature_extractor, returns whether the image features are NSFW or not.
 
 We will look into each component in more detail later.
 
-If we run ```pipe.to('cuda')```, we get the output showcasing all the different components that have been loaded into
+If we run ```pipe.to('cuda')```, we get the output showcasing all the different components that've been loaded into
 the gpu.
 ```
 StableDiffusionPipeline {
@@ -112,10 +112,9 @@ generator = torch.Generator('cuda').manual_seed(5)
 prompt = 'A cute cat wearing a military cap'
 %time image = pipe(prompt, generator=generator, width=720, height=720, num_inference_steps=50)
 ```
-Here, generator was used to seed the image generation process for reproducible results and, we can specify width and 
-height of image if required along with num_inference_steps denoising steps to take to generate this image. Keep in mind
-that the image generation won't work well with low resolution images like below 512 as the original model was trained
-using high resolution images like 768X768 pixels.
+Here, generator was used to seed the image generation process for reproducible results, and we can specify the width and height of the image if required along with num_inference_steps denoising steps to take to generate this image. Keep in mind
+that the image generation won't work well with low-resolution images like below 512 as the original model was trained
+using high-resolution images like 768X768 pixels.
 The output got is the image:
 ![](../assets/images/blogpost/original_cat.png)
 ### Inference and training mechanism
@@ -126,19 +125,19 @@ of the model as mentioned in the paper.
 |![](../assets/images/blogpost/LDM_architecture.png) Training and inference architecture|
 |Source: [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)|
 
-As seen in the image above a latent diffusion model has three main components, A Variational autoencoder with encoder and
+As seen in the image above, a latent diffusion model has three main components, A Variational autoencoder with encoder and
 decoder to convert image to latent space and vice versa as remarked as **Pixel Space**, A Denoising U-Net model which 
 works in the latent space, and conditioning encoder to help encode conditioning embedding into the Denoising deffuion
 model.
 
 **Inference Phase**: The steps during inference phase are:
 1. A random noise is sampled from a distribution which was used during the training phase for timestep T (num_inference_steps)
-2. The condition (in our case text) is tokenized and fed into text encoding model to get the text embeddings
-3. The generated random noise can be interpreted a noisy image Latent. 
+2. The condition (in our case text) is tokenized and fed into a text-encoding model to get the text embeddings
+3. The generated random noise can be interpreted as a noisy image Latent. 
 4. The noisy image Latent is added as input to the Denoising U-Net for step T-1 along with embedding of condition
-    using cross attention mechanism
+    using a cross-attention mechanism
 5. The Denoising U-Net model predicts the noise present for that step
-6. The predicted noise is subtracted from the noisy image latent from previous step
+6. The predicted noise is subtracted from the noisy image latent from the previous step
 7. The noisy image after subtraction represents a new less noisy image latent
 8. The steps from 4 to 7 are repeated until T reaches zero
 9. At latent embedding generated at step zero is fed through the VAE decoder resulting in the generated image
@@ -147,8 +146,8 @@ model.
 1. Train an autoencoder model or use a good pre-trained one
 2. Train or use pre-trained Conditioning encoder (In stable diffusion case [CLIP](https://openai.com/research/clip) was used)
 3. Encode an image to lower latent dimension using encoder of VAE
-4. Use diffusion process to add noise onto the latent image for each diffusion step
-5. Using the noise that was added as ground truth and text embedding with cross attention as output train the De-noising
+4. Use the diffusion process to add noise onto the latent image for each diffusion step
+5. Using the noise that was added as ground truth and text embedding with cross-attention as output train the De-noising
     diffusion model to predict added noise correctly
 6. Repeat from step 3 to step 5 until convergence or generated images start looking adequate when image latent embeddings
     are decoded back to pixelated images
@@ -180,9 +179,9 @@ training is done. Let's take a closer look into its components.
     torch.Size([1, 4, 64, 64])
     ```
     which is very less compared to the original image in pixel space. And this is the encoded_image embedding that is worked
-    upon by the UNET instead making the Latent diffusion process much faster.
+    upon by the UNET, making the Latent diffusion process much faster.
     
-    Now lets try to get back the ```encoded_output``` back to pixel space using the decoder and see if we get the same input
+    Now let's try to get back the ```encoded_output``` back to pixel space using the decoder and see if we get the same input
     image.
     ```
     def numpy_to_pil(images):
@@ -211,7 +210,7 @@ training is done. Let's take a closer look into its components.
     We get the generated image tensor back as  ```torch.Size([1, 3, 512, 512])``` and get the almost exact looking image as shown below
     even though this is a newly generated image with slightly different tensor values.
     ![](../assets/images/blogpost/cat_regenerated.png)
-    In this way we know that the variational autoencoder as an individual component works very well.
+    In this way, we know that the variational autoencoder as an individual component works very well.
     Let's see what the architecture of the whole VAE looks like by running the command:
     ```
     from torchinfo import summary
@@ -308,7 +307,7 @@ training is done. Let's take a closer look into its components.
     print(prompt_embeds[0].shape
     ```
     We get the output showing that the model returns the last hidden state with embedding shape (77, 1024) which will be used
-    as input to provide condition to the Denoising UNet model. The dimensions here shows that this particular model can take
+    as input to provide condition to the Denoising UNet model. The dimensions here show that this particular model can take
     max number of 77 input tokens and each token has embedding of size 1024.
     ```
     BaseModelOutputWithPooling(last_hidden_state=tensor([[[-0.3132, -0.4478, -0.0083,  ...,  0.2544, -0.0328, -0.2959],
@@ -354,9 +353,9 @@ training is done. Let's take a closer look into its components.
 - #### Denoising UNet
     The Denoising UNet is the main component of the whole Latent diffusion model because this model is the one which actually
     is able to iteratively convert a random noise following a particular distribution to a good image embedding by predicting
-    the noise which is present in the input which can then be subtracted from original noisy image to get a less noisy image.
+    the noise which is present in the input which can then be subtracted from the original noisy image to get a less noisy image.
     
-    The UNet forward method takes three mandatory input arguments - The encoded noisy image, the encoded text prompt for condition,
+    The UNet forward method takes three mandatory input arguments-The encoded noisy image, the encoded text prompt for condition,
     and the denoising step for which prediction needs to be done.
 
     Let's try this out for 4th step as an example:
@@ -479,12 +478,18 @@ training is done. Let's take a closer look into its components.
       "trained_betas": null
     }
     ```
-    which shows that we are using DDIMScheduler with its version and different default hyper-parameters. It has methods
-    such as set_timesteps(to set the max timesteps for inference) and step(predict the noise at previous time step) to facilitate
-  easier training and inference operations. To get more information around different schedulers and their usage check out
+    which shows that we're using DDIMScheduler with its version and different default hyperparameters. It has methods
+    such as set_timesteps(to set the max timesteps for inference) and step(predict the noise at the previous time step) to facilitate
+  easier training and inference operations. To get more information around different schedulers and their usage, check out
   [Huggingface diffusers documentation](https://huggingface.co/docs/diffusers/api/schedulers/overview).
 
 - #### Safety Checker and feature extractor
-  Safety checker a model which checks if the NSFW content is being generated and if so flags it with a warning and generates
+  Safety checker a model which checks if the NSFW content is being generated and if so, flags it with a warning and generates
   a blank image if the "requires_safety_checker" is set to True. "feature_extractor" is used to extract features from generated
   image to be fed to the safety_checker model.
+
+### Conclusion
+In this blogpost, we saw how different components work in tandem in a Latent diffusion model using the transformer's
+Diffusers library.
+For complex models such as diffusion models, it is always a good practice to check out how individual
+components work to understand the working clearly.

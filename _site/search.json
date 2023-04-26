@@ -1,7 +1,7 @@
 [
   
     {
-      "title"    : "Training Gymnasium agents using Stable Baselines 3",
+      "title"    : "Training Deep RL agents using Stable Baselines 3",
       "category" : "",
       "tags"     : "Deep Reinforcement Learning",
       "url"      : "/blog/Training-Gymnasium-agents-using-stable-baselines3",
@@ -9,19 +9,11 @@
     } ,
   
     {
-      "title"    : "A brief look into Latent diffusion models components",
+      "title"    : "Components in Latent Diffusion models",
       "category" : "",
       "tags"     : "Generative Modelling, Diffusion, Huggingface",
       "url"      : "/blog/A-brief-look-into-Latent-diffusion-components",
       "date"     : "2023-02-05 00:00:00 +0530"
-    } ,
-  
-    {
-      "title"    : "Transformer usage in Non NLP fields",
-      "category" : "",
-      "tags"     : "Transformer Architectures, NLP",
-      "url"      : "/blog/Use-of-transformers-in-AI-fields",
-      "date"     : "2023-01-03 00:00:00 +0530"
     } ,
   
     {
@@ -33,7 +25,7 @@
     } ,
   
     {
-      "title"    : "A brief look into downstream NLP tasks using transformer models",
+      "title"    : "Fine-tuning transformer models on downstream NLP tasks",
       "category" : "",
       "tags"     : "Transformer Architectures, NLP",
       "url"      : "/blog/fine-tuning-tasks",
@@ -41,7 +33,7 @@
     } ,
   
     {
-      "title"    : "Self-supervised pretraining strategies for transformer models",
+      "title"    : "Self-supervised pretraining for transformer models",
       "category" : "",
       "tags"     : "Transformer Architectures, NLP",
       "url"      : "/blog/Transformer-Pretraining-strategies",

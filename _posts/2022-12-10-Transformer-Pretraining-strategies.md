@@ -1,10 +1,10 @@
 ---
-title: Self-supervised pretraining strategies for transformer models
+title: Self-supervised pretraining for transformer models
 tags: [Transformer Architectures, NLP]
 style: fill
 color: secondary
 comments: true
-description: Description of several techniques using which Transformers are trained.
+description: Description of several techniques using which Transformers are trained in self-supervised manner.
 ---
 
 Recently in the last 3 to 4 years since the release of the research paper "Attention is all you need" [1] which showed

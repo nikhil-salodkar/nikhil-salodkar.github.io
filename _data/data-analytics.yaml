@@ -1,0 +1,23 @@
+- name: Scikit-learn
+  percentage: 95
+  color: success
+
+- name: Numpy
+  percentage: 80
+  color: success
+
+- name: Pandas
+  percentage: 90
+  color: success
+
+- name: Plotly
+  percentage: 75
+  color:
+
+- name: Nvidia RAPIDS
+  percentage: 60
+  color: warning
+
+- name: SciPy
+  percentage: 60
+  color: warning
